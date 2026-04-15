@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accentrix Theme System</title>
+<title>Accentrix.ai</title>
 
 <style>
 :root {
@@ -15,60 +15,114 @@ body {
   font-family: Arial, sans-serif;
   margin:0;
   background:#f8fafc;
+  color:#111827;
 }
 
-.container {max-width:1100px;margin:auto;padding:20px;}
+.container {max-width:1200px;margin:auto;padding:20px;}
 
-/* TOP */
-.top-bar {display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;}
+/* TOP BAR */
+.top-bar {
+  background:#fff;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:20px;
+}
 
-input {padding:6px;}
+.theme-wrap {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:10px;
+}
 
-/* THEME DOTS */
 .theme-dot {
-  width:30px;height:30px;border-radius:50%;
-  cursor:pointer;border:2px solid #fff;
+  width:40px;
+  height:40px;
+  border-radius:50%;
+  cursor:pointer;
+  border:2px solid #ddd;
 }
-.theme-wrap {display:flex;gap:8px;flex-wrap:wrap;}
 
 /* HEADER */
-header {display:flex;justify-content:space-between;align-items:center;}
+header {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
 .logo {display:flex;align-items:center;gap:10px;}
+
 .logo svg {width:40px;}
 
 .btn {
   background:linear-gradient(90deg,var(--primary),var(--secondary));
-  color:white;padding:10px 18px;border:none;border-radius:8px;
+  color:#fff;
+  padding:10px 18px;
+  border:none;
+  border-radius:8px;
 }
 
 /* HERO */
-.hero {text-align:center;padding:60px 20px;}
-
-.gradient-text {
- background:linear-gradient(90deg,var(--primary),var(--secondary));
- -webkit-background-clip:text;color:transparent;
+.hero {
+  text-align:center;
+  padding:80px 20px;
 }
 
+.gradient-text {
+  background:linear-gradient(90deg,var(--primary),var(--secondary));
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+.hero p {max-width:700px;margin:auto;opacity:0.8;}
+
 /* LOGOS */
-.logos {display:flex;justify-content:center;gap:20px;margin:20px 0;}
-.logos div {opacity:0.5;}
+.logos {
+  display:flex;
+  justify-content:center;
+  gap:30px;
+  margin:30px 0;
+  opacity:0.6;
+}
 
-/* GRID */
-.grid {display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+/* SECTIONS */
+.section {margin:60px 0;}
 
-.card {background:#fff;padding:20px;border-radius:10px;}
+.grid {
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:20px;
+}
+
+.card {
+  background:#fff;
+  padding:20px;
+  border-radius:10px;
+}
 
 /* METRICS */
-.metrics {display:flex;justify-content:space-around;margin:40px 0;}
+.metrics {
+  display:flex;
+  justify-content:space-around;
+  text-align:center;
+}
+
 .metrics h2 {color:var(--primary);}
 
 /* USE CASE */
 .usecase {
-  padding:30px;border-radius:10px;color:white;text-align:center;
   background:linear-gradient(90deg,var(--primary),var(--secondary));
+  color:#fff;
+  padding:40px;
+  border-radius:10px;
+  text-align:center;
 }
 
+footer {
+  text-align:center;
+  margin-top:60px;
+  opacity:0.6;
+}
 </style>
 </head>
 
@@ -76,11 +130,12 @@ header {display:flex;justify-content:space-between;align-items:center;}
 
 <div class="container">
 
-<!-- CONTROLS -->
+<!-- THEME CONTROLS -->
 <div class="top-bar">
+<b>Theme Selector</b><br>
 
-<input id="pHex" value="#4f46e5">
-<input id="sHex" value="#06b6d4">
+Primary: <input id="pHex" value="#4f46e5">
+Secondary: <input id="sHex" value="#06b6d4">
 
 <div class="theme-wrap">
 
@@ -113,11 +168,15 @@ header {display:flex;justify-content:space-between;align-items:center;}
 </header>
 
 <!-- HERO -->
-<div class="hero">
-<h1 class="gradient-text">Turn Product Discovery into Revenue</h1>
-<p>AI-powered search, recommendations, and merchandising platform</p>
-<button class="btn">Get Started</button>
-</div>
+<section class="hero">
+<h1 class="gradient-text">Turn Product Discovery into Your Top Revenue Channel</h1>
+<p>
+Accentrix is a discovery-first commerce intelligence platform combining AI search,
+real-time recommendations, and merchandising into one unified system.
+</p>
+<br>
+<button class="btn">Request Demo</button>
+</section>
 
 <!-- LOGOS -->
 <div class="logos">
@@ -125,33 +184,75 @@ header {display:flex;justify-content:space-between;align-items:center;}
 <div>Amazon</div>
 <div>Nike</div>
 <div>Adidas</div>
+<div>Zara</div>
+</div>
+
+<!-- ABOUT -->
+<div class="section">
+<h2>About Accentrix</h2>
+<p>
+Accentrix is a fully realized, discovery-first commerce intelligence platform powering mid-market ecommerce retailers worldwide. We’ve replaced fragmented search stacks with a unified intelligence layer combining AI-powered search, real-time recommendations, and intent-driven merchandising.
+<br><br>
+By understanding shopper intent, Accentrix helps brands increase click-through rates, improve recommendations, and accelerate conversions from search to checkout — turning discovery into a core revenue channel.
+</p>
 </div>
 
 <!-- FEATURES -->
-<div class="grid">
-<div class="card">AI Search – Intent-based results</div>
-<div class="card">Recommendations – Personalized suggestions</div>
-<div class="card">Merchandising – Optimize visibility</div>
+<div class="section grid">
+<div class="card">
+<h3>AI-Powered Search</h3>
+<p>Understand user intent beyond keywords and deliver accurate results instantly.</p>
+</div>
+
+<div class="card">
+<h3>Smart Recommendations</h3>
+<p>Increase average order value with real-time personalized product suggestions.</p>
+</div>
+
+<div class="card">
+<h3>Merchandising Control</h3>
+<p>Optimize product visibility and drive conversions with AI insights.</p>
+</div>
 </div>
 
 <!-- METRICS -->
-<div class="metrics">
-<div><h2>+35%</h2><p>Conversion</p></div>
-<div><h2>+22%</h2><p>AOV</p></div>
+<div class="section metrics">
+<div><h2>+35%</h2><p>Conversion Rate</p></div>
+<div><h2>+22%</h2><p>Average Order Value</p></div>
 <div><h2>+40%</h2><p>CTR</p></div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="section">
+<h2>How It Works</h2>
+<p>
+1. Integrate quickly with API or plugin<br>
+2. Analyze shopper behavior in real-time<br>
+3. Deliver optimized search and recommendations instantly
+</p>
 </div>
 
 <!-- USE CASE -->
 <div class="usecase">
 <h2>Before vs After Accentrix</h2>
-<p>❌ Generic search → low conversion</p>
-<p>✅ AI intent → higher revenue</p>
+<p>❌ Generic search results → Low engagement</p>
+<p>✅ AI-driven discovery → Higher revenue & conversions</p>
 </div>
+
+<!-- CTA -->
+<div class="section" style="text-align:center;">
+<h2>Turn Search into a Revenue Engine</h2>
+<p>Start optimizing your ecommerce experience today.</p>
+<button class="btn">Book a Demo</button>
+</div>
+
+<footer>
+© 2026 Accentrix.ai
+</footer>
 
 </div>
 
 <script>
-// APPLY
 function setTheme(p,s){
  document.documentElement.style.setProperty('--primary',p);
  document.documentElement.style.setProperty('--secondary',s);
@@ -159,7 +260,6 @@ function setTheme(p,s){
  sHex.value=s;
 }
 
-// HEX INPUT
 pHex.oninput=()=>setTheme(pHex.value,sHex.value);
 sHex.oninput=()=>setTheme(pHex.value,sHex.value);
 </script>
