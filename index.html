@@ -3,21 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accentrix Theme Builder</title>
+<title>Accentrix Theme System</title>
 
 <style>
 :root {
   --primary: #4f46e5;
   --secondary: #06b6d4;
-  --bg: #f8fafc;
-  --text: #0f172a;
+  --bg: #ffffff;
 }
 
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
   background: var(--bg);
-  color: var(--text);
+  color: #111;
 }
 
 .container {
@@ -28,21 +27,17 @@ body {
 
 /* TOP PANEL */
 .top-bar {
-  background: white;
+  background: #fff;
   padding: 15px;
   border-radius: 12px;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 12px;
   margin-bottom: 20px;
 }
 
-input {
+input, select {
   padding: 6px;
-}
-
-label {
-  font-size: 12px;
 }
 
 /* HEADER */
@@ -58,11 +53,10 @@ header {
   gap: 10px;
 }
 
-.logo-box {
-  width: 35px;
-  height: 35px;
-  border-radius: 8px;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+/* SVG LOGO */
+.logo svg {
+  width: 40px;
+  height: 40px;
 }
 
 .logo-text {
@@ -72,17 +66,21 @@ header {
 
 /* BUTTON */
 .btn {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  color: white;
   padding: 10px 18px;
   border-radius: 8px;
   border: none;
+  cursor: pointer;
 }
+
+/* BUTTON TYPES */
+.solid { background: var(--primary); color: #fff; }
+.outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
+.gradient { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; }
 
 /* HERO */
 .hero {
   text-align: center;
-  padding: 70px 20px;
+  padding: 60px 20px;
 }
 
 .gradient-text {
@@ -91,37 +89,26 @@ header {
   color: transparent;
 }
 
-/* COMPONENT PREVIEW */
-.preview {
-  margin-top: 40px;
-}
-
-.card-grid {
+/* CARDS */
+.grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 20px;
 }
 
 .card {
-  background: white;
   padding: 20px;
   border-radius: 12px;
-  border-top: 4px solid var(--primary);
+  background: #fff;
 }
 
-.badge {
-  display: inline-block;
-  padding: 5px 10px;
-  background: var(--primary);
-  color: white;
-  border-radius: 20px;
-  font-size: 12px;
-}
+.shadow { box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
+.border { border-top: 4px solid var(--primary); }
 
 .divider {
   height: 4px;
+  margin: 30px 0;
   background: linear-gradient(90deg, var(--primary), var(--secondary));
-  margin: 40px 0;
 }
 </style>
 </head>
@@ -133,111 +120,123 @@ header {
 <!-- CONTROL PANEL -->
 <div class="top-bar">
 
-  <div>
-    <label>Primary HEX</label><br>
-    <input type="text" id="primaryHex" value="#4f46e5">
-  </div>
+  <!-- COLORS -->
+  <input type="text" id="pHex" value="#4f46e5">
+  <input type="text" id="sHex" value="#06b6d4">
 
-  <div>
-    <label>Primary RGB</label><br>
-    <input type="text" id="primaryRGB" value="79,70,229">
-  </div>
+  <input type="text" id="pRGB" value="79,70,229">
+  <input type="text" id="sRGB" value="6,182,212">
 
-  <div>
-    <label>Secondary HEX</label><br>
-    <input type="text" id="secondaryHex" value="#06b6d4">
-  </div>
+  <!-- BACKGROUND -->
+  <select onchange="setBg(this.value)">
+    <option value="#ffffff">White</option>
+    <option value="#f1f5f9">Light Gray</option>
+    <option value="gradient">Gradient</option>
+  </select>
 
-  <div>
-    <label>Secondary RGB</label><br>
-    <input type="text" id="secondaryRGB" value="6,182,212">
-  </div>
+  <!-- BUTTON -->
+  <select onchange="setButton(this.value)">
+    <option value="solid">Solid</option>
+    <option value="outline">Outline</option>
+    <option value="gradient">Gradient</option>
+  </select>
+
+  <!-- CARD -->
+  <select onchange="setCard(this.value)">
+    <option value="flat">Flat</option>
+    <option value="shadow">Shadow</option>
+    <option value="border">Border Accent</option>
+  </select>
 
 </div>
 
 <!-- HEADER -->
 <header>
   <div class="logo-wrap">
-    <div class="logo-box"></div>
+
+    <!-- SVG LOGO -->
+    <div class="logo">
+      <svg viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" fill="var(--primary)"/>
+        <path d="M30 60 L50 30 L70 60 Z" fill="var(--secondary)"/>
+      </svg>
+    </div>
+
     <div class="logo-text">Accentrix.ai</div>
   </div>
-  <button class="btn">Book Demo</button>
+
+  <button class="btn solid" id="mainBtn">Book Demo</button>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="gradient-text">AI Commerce Intelligence Platform</h1>
-  <p>Live preview your branding system before development.</p>
-  <br>
-  <button class="btn">Get Started</button>
+  <h1 class="gradient-text">AI Commerce Intelligence</h1>
+  <p>Customize theme, preview components, finalize branding.</p>
+  <button class="btn solid" id="heroBtn">Get Started</button>
 </section>
 
 <div class="divider"></div>
 
-<!-- COMPONENT PREVIEW -->
-<section class="preview">
-
-  <span class="badge">Live Component Preview</span>
-
-  <div class="card-grid">
-    <div class="card">
-      <h3>Search AI</h3>
-      <p>Intent-based results.</p>
-      <button class="btn">Explore</button>
-    </div>
-
-    <div class="card">
-      <h3>Recommendations</h3>
-      <p>Personalized suggestions.</p>
-      <button class="btn">Explore</button>
-    </div>
-
-    <div class="card">
-      <h3>Analytics</h3>
-      <p>Real-time insights.</p>
-      <button class="btn">Explore</button>
-    </div>
-  </div>
-
-</section>
+<!-- CARDS -->
+<div class="grid" id="cards">
+  <div class="card">AI Search</div>
+  <div class="card">Recommendations</div>
+  <div class="card">Analytics</div>
+</div>
 
 </div>
 
 <script>
-// HEX → APPLY
-function setPrimary(hex) {
-  document.documentElement.style.setProperty('--primary', hex);
-}
-function setSecondary(hex) {
-  document.documentElement.style.setProperty('--secondary', hex);
-}
+// COLOR
+function setPrimary(hex){ document.documentElement.style.setProperty('--primary', hex); }
+function setSecondary(hex){ document.documentElement.style.setProperty('--secondary', hex); }
 
-// RGB → HEX
-function rgbToHex(rgb) {
-  let [r,g,b] = rgb.split(',').map(Number);
-  return "#" + [r,g,b].map(x => x.toString(16).padStart(2,'0')).join('');
+function rgbToHex(rgb){
+ let [r,g,b]=rgb.split(',').map(Number);
+ return "#" + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
 }
 
-// EVENTS
-document.getElementById("primaryHex").addEventListener("input", function() {
-  setPrimary(this.value);
-});
+pHex.oninput = ()=> setPrimary(pHex.value);
+sHex.oninput = ()=> setSecondary(sHex.value);
 
-document.getElementById("secondaryHex").addEventListener("input", function() {
-  setSecondary(this.value);
-});
+pRGB.oninput = ()=>{
+ let hex=rgbToHex(pRGB.value);
+ pHex.value=hex;
+ setPrimary(hex);
+};
 
-document.getElementById("primaryRGB").addEventListener("input", function() {
-  let hex = rgbToHex(this.value);
-  document.getElementById("primaryHex").value = hex;
-  setPrimary(hex);
-});
+sRGB.oninput = ()=>{
+ let hex=rgbToHex(sRGB.value);
+ sHex.value=hex;
+ setSecondary(hex);
+};
 
-document.getElementById("secondaryRGB").addEventListener("input", function() {
-  let hex = rgbToHex(this.value);
-  document.getElementById("secondaryHex").value = hex;
-  setSecondary(hex);
-});
+// BG
+function setBg(val){
+ if(val==="gradient"){
+  document.body.style.background = `linear-gradient(135deg, var(--primary), var(--secondary))`;
+ } else {
+  document.body.style.background = val;
+ }
+}
+
+// BUTTON
+function setButton(type){
+ let btns=document.querySelectorAll('.btn');
+ btns.forEach(b=>{
+  b.className='btn '+type;
+ });
+}
+
+// CARD
+function setCard(type){
+ let cards=document.querySelectorAll('.card');
+ cards.forEach(c=>{
+  c.className='card';
+  if(type==='shadow') c.classList.add('shadow');
+  if(type==='border') c.classList.add('border');
+ });
+}
 </script>
 
 </body>
