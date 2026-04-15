@@ -189,6 +189,38 @@ Secondary HEX: <input id="sHex" value="#06b6d4">
 <div class="theme-dot" style="background:linear-gradient(45deg,#0f172a,#334155)" onclick="setTheme('#0f172a','#334155')"></div>
 <div class="theme-dot" style="background:linear-gradient(45deg,#111827,#1f2933)" onclick="setTheme('#111827','#1f2933')"></div>
 
+  <!-- ULTRA PREMIUM AI THEMES -->
+
+<!-- Deep AI Blue -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#1e3a8a,#38bdf8)" onclick="setTheme('#1e3a8a','#38bdf8')"></div>
+
+<!-- Silicon Valley Clean -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#0f172a,#22c55e)" onclick="setTheme('#0f172a','#22c55e')"></div>
+
+<!-- Stripe Inspired -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#635bff,#00d4ff)" onclick="setTheme('#635bff','#00d4ff')"></div>
+
+<!-- OpenAI Soft -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#10a37f,#a7f3d0)" onclick="setTheme('#10a37f','#a7f3d0')"></div>
+
+<!-- Luxury SaaS -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#111827,#c084fc)" onclick="setTheme('#111827','#c084fc')"></div>
+
+<!-- Fintech Pro -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#0ea5e9,#14b8a6)" onclick="setTheme('#0ea5e9','#14b8a6')"></div>
+
+<!-- Warm Conversion -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#f97316,#fb923c)" onclick="setTheme('#f97316','#fb923c')"></div>
+
+<!-- Soft Purple Premium -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#8b5cf6,#c4b5fd)" onclick="setTheme('#8b5cf6','#c4b5fd')"></div>
+
+<!-- Cool Minimal Light -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#e0f2fe,#7dd3fc)" onclick="setTheme('#0284c7','#7dd3fc')"></div>
+
+<!-- Elegant Neutral -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#374151,#d1d5db)" onclick="setTheme('#374151','#d1d5db')"></div>
+  
 </div>
 
 </div>
@@ -306,6 +338,15 @@ function setBg(val){
  }
 }
 </script>
+<script>
+const VERSION = "1.0.3"; // change this every deploy
 
+const storedVersion = localStorage.getItem("site_version");
+
+if (storedVersion !== VERSION) {
+  localStorage.setItem("site_version", VERSION);
+  location.reload(true);
+}
+</script>
 </body>
 </html>
