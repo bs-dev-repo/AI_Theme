@@ -3,239 +3,188 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accentrix Theme System</title>
+<title>Accentrix Ultimate Theme System</title>
 
 <style>
 :root {
-  --primary: #4f46e5;
-  --secondary: #06b6d4;
-  --bg: #ffffff;
+  --primary:#4f46e5;
+  --secondary:#06b6d4;
+  --bg:#ffffff;
 }
 
 body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg);
-  color: #111;
+  margin:0;
+  font-family:'Segoe UI',sans-serif;
+  background:var(--bg);
+  transition:0.3s;
 }
 
-.container {
-  max-width: 1200px;
-  margin: auto;
-  padding: 20px;
-}
+.container {max-width:1200px;margin:auto;padding:20px;}
 
-/* TOP PANEL */
 .top-bar {
-  background: #fff;
-  padding: 15px;
-  border-radius: 12px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 20px;
+  background:#fff;padding:15px;border-radius:12px;
+  display:flex;flex-wrap:wrap;gap:10px;margin-bottom:20px;
 }
 
-input, select {
-  padding: 6px;
+header {display:flex;justify-content:space-between;align-items:center;}
+
+.logo svg{width:40px;}
+.logo-wrap{display:flex;gap:10px;align-items:center;}
+
+.btn{padding:10px 18px;border-radius:8px;border:none;cursor:pointer;}
+.solid{background:var(--primary);color:#fff;}
+.gradient{background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;}
+
+.hero{text-align:center;padding:70px 20px;animation:fadeUp 0.8s;}
+
+.gradient-text{
+ background:linear-gradient(90deg,var(--primary),var(--secondary));
+ -webkit-background-clip:text;color:transparent;
 }
 
-/* HEADER */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+
+.card{padding:20px;border-radius:12px;background:#fff;}
+.shadow{box-shadow:0 10px 20px rgba(0,0,0,0.08);}
+.border{border-top:4px solid var(--primary);}
+
+.usecase{
+ margin-top:40px;padding:30px;border-radius:12px;
+ background:linear-gradient(90deg,var(--primary),var(--secondary));
+ color:#fff;text-align:center;
 }
 
-.logo-wrap {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
+.alt .hero{text-align:left;}
 
-/* SVG LOGO */
-.logo svg {
-  width: 40px;
-  height: 40px;
-}
-
-.logo-text {
-  font-weight: bold;
-  font-size: 20px;
-}
-
-/* BUTTON */
-.btn {
-  padding: 10px 18px;
-  border-radius: 8px;
-  border: none;
-  cursor: pointer;
-}
-
-/* BUTTON TYPES */
-.solid { background: var(--primary); color: #fff; }
-.outline { border: 2px solid var(--primary); color: var(--primary); background: transparent; }
-.gradient { background: linear-gradient(90deg, var(--primary), var(--secondary)); color: white; }
-
-/* HERO */
-.hero {
-  text-align: center;
-  padding: 60px 20px;
-}
-
-.gradient-text {
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
-  -webkit-background-clip: text;
-  color: transparent;
-}
-
-/* CARDS */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-}
-
-.card {
-  padding: 20px;
-  border-radius: 12px;
-  background: #fff;
-}
-
-.shadow { box-shadow: 0 10px 20px rgba(0,0,0,0.08); }
-.border { border-top: 4px solid var(--primary); }
-
-.divider {
-  height: 4px;
-  margin: 30px 0;
-  background: linear-gradient(90deg, var(--primary), var(--secondary));
+@keyframes fadeUp{
+ from{opacity:0;transform:translateY(20px);}
+ to{opacity:1;transform:translateY(0);}
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="container" id="app">
 
 <!-- CONTROL PANEL -->
 <div class="top-bar">
 
-  <!-- COLORS -->
-  <input type="text" id="pHex" value="#4f46e5">
-  <input type="text" id="sHex" value="#06b6d4">
+<input id="pHex" value="#4f46e5">
+<input id="sHex" value="#06b6d4">
 
-  <input type="text" id="pRGB" value="79,70,229">
-  <input type="text" id="sRGB" value="6,182,212">
+<select onchange="setLayout(this.value)">
+<option value="default">Layout A</option>
+<option value="alt">Layout B</option>
+</select>
 
-  <!-- BACKGROUND -->
-  <select onchange="setBg(this.value)">
-    <option value="#ffffff">White</option>
-    <option value="#f1f5f9">Light Gray</option>
-    <option value="gradient">Gradient</option>
-  </select>
+<select onchange="setButton(this.value)">
+<option value="solid">Button Solid</option>
+<option value="gradient">Button Gradient</option>
+</select>
 
-  <!-- BUTTON -->
-  <select onchange="setButton(this.value)">
-    <option value="solid">Solid</option>
-    <option value="outline">Outline</option>
-    <option value="gradient">Gradient</option>
-  </select>
+<select onchange="setCard(this.value)">
+<option value="flat">Card Flat</option>
+<option value="shadow">Card Shadow</option>
+<option value="border">Card Border</option>
+</select>
 
-  <!-- CARD -->
-  <select onchange="setCard(this.value)">
-    <option value="flat">Flat</option>
-    <option value="shadow">Shadow</option>
-    <option value="border">Border Accent</option>
-  </select>
+<select onchange="setBg(this.value)">
+<option value="white">White</option>
+<option value="gray">Light Gray</option>
+<option value="gradient">Gradient</option>
+</select>
+
+<button onclick="exportTheme()">Export Theme</button>
 
 </div>
 
 <!-- HEADER -->
 <header>
-  <div class="logo-wrap">
+<div class="logo-wrap">
+<div class="logo">
+<svg viewBox="0 0 100 100">
+<circle cx="50" cy="50" r="40" fill="var(--primary)"/>
+<path d="M30 60 L50 30 L70 60 Z" fill="var(--secondary)"/>
+</svg>
+</div>
+<b>Accentrix.ai</b>
+</div>
 
-    <!-- SVG LOGO -->
-    <div class="logo">
-      <svg viewBox="0 0 100 100">
-        <circle cx="50" cy="50" r="40" fill="var(--primary)"/>
-        <path d="M30 60 L50 30 L70 60 Z" fill="var(--secondary)"/>
-      </svg>
-    </div>
-
-    <div class="logo-text">Accentrix.ai</div>
-  </div>
-
-  <button class="btn solid" id="mainBtn">Book Demo</button>
+<button class="btn solid">Book Demo</button>
 </header>
 
 <!-- HERO -->
 <section class="hero">
-  <h1 class="gradient-text">AI Commerce Intelligence</h1>
-  <p>Customize theme, preview components, finalize branding.</p>
-  <button class="btn solid" id="heroBtn">Get Started</button>
+<h1 class="gradient-text">Turn Search into Revenue</h1>
+<p>AI-powered discovery & personalization</p>
+<button class="btn solid">Get Started</button>
 </section>
 
-<div class="divider"></div>
-
-<!-- CARDS -->
+<!-- FEATURES -->
 <div class="grid" id="cards">
-  <div class="card">AI Search</div>
-  <div class="card">Recommendations</div>
-  <div class="card">Analytics</div>
+<div class="card">AI Search</div>
+<div class="card">Recommendations</div>
+<div class="card">Merchandising</div>
+</div>
+
+<!-- USE CASE -->
+<div class="usecase">
+<h2>Before vs After Accentrix</h2>
+<p>❌ Generic Search → Low Conversion</p>
+<p>✅ AI Intent → Higher Revenue</p>
 </div>
 
 </div>
 
 <script>
-// COLOR
-function setPrimary(hex){ document.documentElement.style.setProperty('--primary', hex); }
-function setSecondary(hex){ document.documentElement.style.setProperty('--secondary', hex); }
+// COLORS
+pHex.oninput=()=>document.documentElement.style.setProperty('--primary',pHex.value);
+sHex.oninput=()=>document.documentElement.style.setProperty('--secondary',sHex.value);
 
-function rgbToHex(rgb){
- let [r,g,b]=rgb.split(',').map(Number);
- return "#" + [r,g,b].map(x=>x.toString(16).padStart(2,'0')).join('');
-}
-
-pHex.oninput = ()=> setPrimary(pHex.value);
-sHex.oninput = ()=> setSecondary(sHex.value);
-
-pRGB.oninput = ()=>{
- let hex=rgbToHex(pRGB.value);
- pHex.value=hex;
- setPrimary(hex);
-};
-
-sRGB.oninput = ()=>{
- let hex=rgbToHex(sRGB.value);
- sHex.value=hex;
- setSecondary(hex);
-};
-
-// BG
-function setBg(val){
- if(val==="gradient"){
-  document.body.style.background = `linear-gradient(135deg, var(--primary), var(--secondary))`;
- } else {
-  document.body.style.background = val;
- }
+// LAYOUT
+function setLayout(type){
+ let app=document.getElementById("app");
+ type==="alt"?app.classList.add("alt"):app.classList.remove("alt");
 }
 
 // BUTTON
 function setButton(type){
- let btns=document.querySelectorAll('.btn');
- btns.forEach(b=>{
-  b.className='btn '+type;
- });
+ document.querySelectorAll('.btn').forEach(b=>b.className='btn '+type);
 }
 
 // CARD
 function setCard(type){
- let cards=document.querySelectorAll('.card');
- cards.forEach(c=>{
+ document.querySelectorAll('.card').forEach(c=>{
   c.className='card';
   if(type==='shadow') c.classList.add('shadow');
   if(type==='border') c.classList.add('border');
  });
+}
+
+// BG
+function setBg(val){
+ if(val==="gradient"){
+  document.body.style.background=`linear-gradient(135deg,var(--primary),var(--secondary))`;
+ } else if(val==="gray"){
+  document.body.style.background="#f1f5f9";
+ } else {
+  document.body.style.background="#ffffff";
+ }
+}
+
+// EXPORT
+function exportTheme(){
+ const theme={
+  primary:pHex.value,
+  secondary:sHex.value
+ };
+
+ const data="data:text/json;charset=utf-8,"+encodeURIComponent(JSON.stringify(theme,null,2));
+ const a=document.createElement('a');
+ a.href=data;
+ a.download="theme.json";
+ a.click();
 }
 </script>
 
