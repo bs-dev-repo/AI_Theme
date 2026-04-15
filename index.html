@@ -3,19 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Accentrix.ai</title>
+<title>Accentrix.ai Theme System</title>
 
 <style>
 :root {
   --primary:#4f46e5;
   --secondary:#06b6d4;
+  --bg:#f8fafc;
+  --text:#111827;
 }
 
 body {
-  font-family: Arial, sans-serif;
   margin:0;
-  background:#f8fafc;
-  color:#111827;
+  font-family: 'Segoe UI', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  transition:0.3s;
 }
 
 .container {max-width:1200px;margin:auto;padding:20px;}
@@ -24,23 +27,23 @@ body {
 .top-bar {
   background:#fff;
   padding:15px;
-  border-radius:10px;
+  border-radius:12px;
   margin-bottom:20px;
 }
 
 .theme-wrap {
   display:flex;
   flex-wrap:wrap;
-  gap:10px;
+  gap:12px;
   margin-top:10px;
 }
 
 .theme-dot {
-  width:40px;
-  height:40px;
+  width:45px;
+  height:45px;
   border-radius:50%;
   cursor:pointer;
-  border:2px solid #ddd;
+  border:3px solid #ddd;
 }
 
 /* HEADER */
@@ -52,21 +55,22 @@ header {
 
 .logo {display:flex;align-items:center;gap:10px;}
 
-.logo svg {width:40px;}
+.logo svg {width:42px;}
 
+/* BUTTON */
 .btn {
-  background:linear-gradient(90deg,var(--primary),var(--secondary));
-  color:#fff;
   padding:10px 18px;
-  border:none;
   border-radius:8px;
+  border:none;
+  cursor:pointer;
 }
+
+.solid {background:var(--primary);color:#fff;}
+.gradient {background:linear-gradient(90deg,var(--primary),var(--secondary));color:#fff;}
+.outline {border:2px solid var(--primary);color:var(--primary);background:transparent;}
 
 /* HERO */
-.hero {
-  text-align:center;
-  padding:80px 20px;
-}
+.hero {text-align:center;padding:80px 20px;}
 
 .gradient-text {
   background:linear-gradient(90deg,var(--primary),var(--secondary));
@@ -74,7 +78,7 @@ header {
   color:transparent;
 }
 
-.hero p {max-width:700px;margin:auto;opacity:0.8;}
+.hero p {max-width:750px;margin:auto;opacity:0.8;}
 
 /* LOGOS */
 .logos {
@@ -97,7 +101,15 @@ header {
 .card {
   background:#fff;
   padding:20px;
-  border-radius:10px;
+  border-radius:12px;
+  transition:0.3s;
+}
+
+.card.soft { border:1px solid #e5e7eb; }
+.card.strong { border:2px solid var(--primary); }
+.card.gradient {
+  border:2px solid;
+  border-image: linear-gradient(90deg,var(--primary),var(--secondary)) 1;
 }
 
 /* METRICS */
@@ -114,7 +126,7 @@ header {
   background:linear-gradient(90deg,var(--primary),var(--secondary));
   color:#fff;
   padding:40px;
-  border-radius:10px;
+  border-radius:12px;
   text-align:center;
 }
 
@@ -130,40 +142,55 @@ footer {
 
 <div class="container">
 
-<!-- THEME CONTROLS -->
+<!-- CONTROLS -->
 <div class="top-bar">
-<b>Theme Selector</b><br>
 
-Primary: <input id="pHex" value="#4f46e5">
-Secondary: <input id="sHex" value="#06b6d4">
+<b>Theme Controls</b><br><br>
+
+Primary HEX: <input id="pHex" value="#4f46e5">
+Secondary HEX: <input id="sHex" value="#06b6d4">
+
+<br><br>
+
+<select onchange="setButton(this.value)">
+<option value="solid">Button Solid</option>
+<option value="gradient">Button Gradient</option>
+<option value="outline">Button Outline</option>
+</select>
+
+<select onchange="setCardBorder(this.value)">
+<option value="none">Card Border: None</option>
+<option value="soft">Soft</option>
+<option value="strong">Strong</option>
+<option value="gradient">Gradient</option>
+</select>
+
+<select onchange="setBg(this.value)">
+<option value="white">White BG</option>
+<option value="gray">Light Gray BG</option>
+<option value="gradient">Gradient BG</option>
+<option value="dark">Dark BG</option>
+</select>
 
 <div class="theme-wrap">
 
+<!-- LIGHT THEMES -->
 <div class="theme-dot" style="background:linear-gradient(45deg,#4f46e5,#06b6d4)" onclick="setTheme('#4f46e5','#06b6d4')"></div>
 <div class="theme-dot" style="background:linear-gradient(45deg,#2563eb,#22c55e)" onclick="setTheme('#2563eb','#22c55e')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#7c3aed,#ec4899)" onclick="setTheme('#7c3aed','#ec4899')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#059669,#10b981)" onclick="setTheme('#059669','#10b981')"></div>
 <div class="theme-dot" style="background:linear-gradient(45deg,#0ea5e9,#6366f1)" onclick="setTheme('#0ea5e9','#6366f1')"></div>
-
-<div class="theme-dot" style="background:linear-gradient(45deg,#111827,#6b7280)" onclick="setTheme('#111827','#6b7280')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#9333ea,#3b82f6)" onclick="setTheme('#9333ea','#3b82f6')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#ea580c,#f59e0b)" onclick="setTheme('#ea580c','#f59e0b')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#1d4ed8,#14b8a6)" onclick="setTheme('#1d4ed8','#14b8a6')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#374151,#9ca3af)" onclick="setTheme('#374151','#9ca3af')"></div>
-<!-- NEW LIGHT THEMES -->
-<div class="theme-dot" style="background:linear-gradient(45deg,#6366f1,#a5b4fc)" onclick="setTheme('#6366f1','#a5b4fc')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#0ea5e9,#7dd3fc)" onclick="setTheme('#0ea5e9','#7dd3fc')"></div>
 <div class="theme-dot" style="background:linear-gradient(45deg,#22c55e,#86efac)" onclick="setTheme('#22c55e','#86efac')"></div>
 <div class="theme-dot" style="background:linear-gradient(45deg,#f59e0b,#fde68a)" onclick="setTheme('#f59e0b','#fde68a')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#ec4899,#fbcfe8)" onclick="setTheme('#ec4899','#fbcfe8')"></div>
 
-<!-- DARK THEMES -->
+<!-- PREMIUM -->
+<div class="theme-dot" style="background:linear-gradient(45deg,#7c3aed,#ec4899)" onclick="setTheme('#7c3aed','#ec4899')"></div>
+<div class="theme-dot" style="background:linear-gradient(45deg,#9333ea,#3b82f6)" onclick="setTheme('#9333ea','#3b82f6')"></div>
+
+<!-- DARK -->
 <div class="theme-dot" style="background:linear-gradient(45deg,#0f172a,#334155)" onclick="setTheme('#0f172a','#334155')"></div>
 <div class="theme-dot" style="background:linear-gradient(45deg,#111827,#1f2933)" onclick="setTheme('#111827','#1f2933')"></div>
-<div class="theme-dot" style="background:linear-gradient(45deg,#020617,#1e293b)" onclick="setTheme('#020617','#1e293b')"></div>
 
-  
 </div>
+
 </div>
 
 <!-- HEADER -->
@@ -176,18 +203,18 @@ Secondary: <input id="sHex" value="#06b6d4">
 <b>Accentrix.ai</b>
 </div>
 
-<button class="btn">Book Demo</button>
+<button class="btn solid">Book Demo</button>
 </header>
 
 <!-- HERO -->
 <section class="hero">
 <h1 class="gradient-text">Turn Product Discovery into Your Top Revenue Channel</h1>
 <p>
-Accentrix is a discovery-first commerce intelligence platform combining AI search,
-real-time recommendations, and merchandising into one unified system.
+Accentrix is a discovery-first commerce intelligence platform combining AI-powered search,
+real-time recommendations, and merchandising into a unified system that drives conversions.
 </p>
 <br>
-<button class="btn">Request Demo</button>
+<button class="btn solid">Request Demo</button>
 </section>
 
 <!-- LOGOS -->
@@ -199,51 +226,44 @@ real-time recommendations, and merchandising into one unified system.
 <div>Zara</div>
 </div>
 
+<!-- ABOUT -->
+<div class="section">
+<h2>About Accentrix</h2>
+<p>
+Accentrix is a fully realized, discovery-first commerce intelligence platform powering mid-market ecommerce retailers worldwide. We’ve replaced fragmented search stacks with a unified intelligence layer combining AI-powered search, real-time recommendations, and intent-driven merchandising.
+<br><br>
+By deeply understanding shopper intent, Accentrix helps brands increase click-through rates, improve recommendations, and accelerate conversions from search to checkout.
+</p>
+</div>
+
 <!-- FEATURES -->
 <div class="section grid">
-<div class="card">
-<h3>AI-Powered Search</h3>
-<p>Understand user intent beyond keywords and deliver accurate results instantly.</p>
+<div class="card">AI-Powered Search</div>
+<div class="card">Smart Recommendations</div>
+<div class="card">Merchandising Control</div>
 </div>
 
-<div class="card">
-<h3>Smart Recommendations</h3>
-<p>Increase average order value with real-time personalized product suggestions.</p>
-</div>
-
-<div class="card">
-<h3>Merchandising Control</h3>
-<p>Optimize product visibility and drive conversions with AI insights.</p>
-</div>
-</div>
-
-<!-- HOW IT WORKS -->
-<div class="section">
-<h2>How It Works</h2>
-<p>
-1. Integrate quickly with API or plugin<br>
-2. Analyze shopper behavior in real-time<br>
-3. Deliver optimized search and recommendations instantly
-</p>
+<!-- METRICS -->
+<div class="section metrics">
+<div><h2>+35%</h2><p>Conversion</p></div>
+<div><h2>+22%</h2><p>AOV</p></div>
+<div><h2>+40%</h2><p>CTR</p></div>
 </div>
 
 <!-- USE CASE -->
 <div class="usecase">
 <h2>Before vs After Accentrix</h2>
-<p>Generic search results → Low engagement</p>
-<p>AI-driven discovery → Higher revenue & conversions</p>
+<p>❌ Generic search → Low conversion</p>
+<p>✅ AI-driven discovery → Higher revenue</p>
 </div>
 
 <!-- CTA -->
 <div class="section" style="text-align:center;">
 <h2>Turn Search into a Revenue Engine</h2>
-<p>Start optimizing your ecommerce experience today.</p>
-<button class="btn">Book a Demo</button>
+<button class="btn solid">Book a Demo</button>
 </div>
 
-<footer>
-© 2026 Accentrix.ai
-</footer>
+<footer>© 2026 Accentrix.ai</footer>
 
 </div>
 
@@ -257,6 +277,34 @@ function setTheme(p,s){
 
 pHex.oninput=()=>setTheme(pHex.value,sHex.value);
 sHex.oninput=()=>setTheme(pHex.value,sHex.value);
+
+function setButton(type){
+ document.querySelectorAll('.btn').forEach(b=>{
+  b.className='btn '+type;
+ });
+}
+
+function setCardBorder(type){
+ document.querySelectorAll('.card').forEach(c=>{
+  c.classList.remove('soft','strong','gradient');
+  if(type==='soft') c.classList.add('soft');
+  if(type==='strong') c.classList.add('strong');
+  if(type==='gradient') c.classList.add('gradient');
+ });
+}
+
+function setBg(val){
+ if(val==="dark"){
+  document.body.style.background="#020617";
+  document.body.style.color="#fff";
+ } else if(val==="gradient"){
+  document.body.style.background=`linear-gradient(135deg,var(--primary),var(--secondary))`;
+ } else if(val==="gray"){
+  document.body.style.background="#f1f5f9";
+ } else {
+  document.body.style.background="#ffffff";
+ }
+}
 </script>
 
 </body>
